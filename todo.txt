@@ -1,0 +1,13 @@
+Indexes
+
+use parent factory user for client and manager
+
+HMAC_SECRET = 'secret' # Rails.application.secrets.secret_key_base
+
+add autentification for managers
+
+pagination
+
+versioning
+
+different issue for client and manager
