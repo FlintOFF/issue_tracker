@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Client, type: :model do
+  subject { create(:client) }
+
   it { should have_many(:issues).dependent(:destroy) }
 
   it 'has a valid factory' do
@@ -8,7 +10,6 @@ RSpec.describe Client, type: :model do
   end
 
   describe 'validations' do
-    subject { create(:client) }
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email).case_insensitive }
     it { should validate_presence_of(:password_digest) }
