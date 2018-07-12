@@ -1,7 +1,8 @@
 class Api::V1::Clients::IssuesController < Api::V1::Clients::BaseController
+  has_scope :by_status, only: :index
 
   def index
-    json_response(client_issues.all.order(id: :desc))
+    json_response(apply_scopes(current_client.issues).all.order(id: :desc))
   end
 
   def create

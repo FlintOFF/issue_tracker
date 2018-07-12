@@ -1,8 +1,9 @@
 class Api::V1::Managers::IssuesController < Api::V1::Managers::BaseController
   before_action :check_assigning, only: [:update, :unassign]
+  has_scope :by_status, only: :index
 
   def index
-    json_response(Issue.all)
+    json_response(apply_scopes(Issue).all)
   end
 
   def show

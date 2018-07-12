@@ -25,6 +25,19 @@ RSpec.describe 'Issues API', type: :request do
       expect(response).to have_http_status(200)
     end
 
+    context 'filter by "status"' do
+      before do
+        issue.update(status: :in_progress)
+        get "#{base_path}/issues", params: { by_status: :in_progress }, headers: headers
+      end
+
+      it 'returns only in_progress issues' do
+        expect(json).not_to be_empty
+        expect(json.size).to eq(1)
+        expect(json.first['status']).to eq('in_progress')
+      end
+    end
+
     context 'when unauthorized request' do
       before { get "#{base_path}/issues", params: {}, headers: invalid_headers }
 

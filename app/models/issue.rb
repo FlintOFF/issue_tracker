@@ -8,4 +8,7 @@ class Issue < ApplicationRecord
 
   # validations
   validates_presence_of :title, :body
+
+  #scopes
+  scope :by_status, ->(status) { where(status: status) }
 end
