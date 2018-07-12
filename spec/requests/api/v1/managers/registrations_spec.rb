@@ -7,8 +7,7 @@ RSpec.describe 'Registration API', type: :request do
 
   let(:valid_attributes) { {
       email: Faker::Internet.email,
-      password: 'password',
-      password_confirmation: 'password'
+      password: 'password'
   } }
   let(:base_path) { '/api/v1/managers' }
 
@@ -35,7 +34,7 @@ RSpec.describe 'Registration API', type: :request do
 
       it 'returns failure message' do
         expect(json['message'])
-          .to match(/Validation failed: Password can't be blank, Email can't be blank, Password digest can't be blank/)
+          .to match(/Validation failed/)
       end
     end
   end
