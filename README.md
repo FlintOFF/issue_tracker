@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+## Notes
+* Don't forget change secret key in file config/initializers/knock.rb in line `config.token_secret_signature_key = -> { 'secret' }`
+
+## TODO
+add autentification for managers
+add one manager account, without registration
+docker
+setup
+description
