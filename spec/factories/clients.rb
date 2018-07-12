@@ -9,7 +9,7 @@ FactoryBot.define do
       end
 
       after(:create) do |client, evaluator|
-        create_list(:issue, evaluator.issues_count, client: client)
+        create_list(:issue, evaluator.issues_count, client: client, manager: nil)
       end
     end
   end

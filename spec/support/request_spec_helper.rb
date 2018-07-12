@@ -3,4 +3,9 @@ module RequestSpecHelper
   def json
     JSON.parse(response.body)
   end
+
+  def auth_headers(id)
+    { 'Authorization' => "Bearer #{Knock::AuthToken.new(payload: { sub: id }).token}" }
+  end
+
 end
