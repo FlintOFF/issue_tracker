@@ -38,6 +38,18 @@ RSpec.describe 'Issues API', type: :request do
       end
     end
 
+    context 'pagination' do
+      before do
+        c = create(:client_with_issues, issues_count: 30)
+        get "#{base_path}/issues", params: { page: 1 }, headers: auth_headers(c.id)
+      end
+
+      it 'must return only 25 issues' do
+        expect(json).not_to be_empty
+        expect(json.size).to eq(25)
+      end
+    end
+
     context 'when unauthorized request' do
       before { get "#{base_path}/issues", params: {}, headers: invalid_headers }
 

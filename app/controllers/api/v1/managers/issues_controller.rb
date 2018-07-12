@@ -3,7 +3,7 @@ class Api::V1::Managers::IssuesController < Api::V1::Managers::BaseController
   has_scope :by_status, only: :index
 
   def index
-    json_response(apply_scopes(Issue).all)
+    json_response(apply_scopes(Issue).all.order(id: :desc).paginate(page: page, per_page: per_page))
   end
 
   def show
