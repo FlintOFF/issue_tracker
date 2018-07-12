@@ -7,7 +7,8 @@ class Issue < ApplicationRecord
   belongs_to :manager, optional: true
 
   # validations
-  validates_presence_of :title, :body
+  validates :title, presence: true
+  validates :body, presence: true
 
   #scopes
   scope :by_status, ->(status) { where(status: status) }

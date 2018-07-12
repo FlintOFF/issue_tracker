@@ -3,6 +3,7 @@ class Manager < ApplicationRecord
 
   has_many :issues
 
-  validates_presence_of :email, :password_digest
-  validates :email, uniqueness: { case_sensitive: false }
+  # validations
+  validates :email, uniqueness: { case_sensitive: false }, presence: true
+  validates :password_digest, presence: true
 end

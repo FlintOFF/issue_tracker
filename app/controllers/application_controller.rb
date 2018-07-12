@@ -14,4 +14,10 @@ class ApplicationController < ActionController::API
   def per_page
     params[:per_page]&.to_i || PER_PAGE
   end
+
+  protected
+
+  def t(key)
+    I18n.t("#{self.class.name.gsub('Controller', '').downcase.gsub('::', '.')}.#{action_name}.#{key}")
+  end
 end

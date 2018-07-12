@@ -2,7 +2,9 @@ class Api::V1::Clients::IssuesController < Api::V1::Clients::BaseController
   has_scope :by_status, only: :index
 
   def index
-    json_response(apply_scopes(current_client.issues).all.order(id: :desc).paginate(page: page, per_page: per_page))
+    json_response(apply_scopes(current_client.issues)
+                    .order(id: :desc)
+                    .paginate(page: page, per_page: per_page))
   end
 
   def create

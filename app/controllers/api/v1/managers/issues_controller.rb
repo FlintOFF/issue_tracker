@@ -24,7 +24,7 @@ class Api::V1::Managers::IssuesController < Api::V1::Managers::BaseController
       issue.update(manager: nil)
       json_response({message: 'Unassigned'}, :ok)
     else
-      json_response({message: "Can't unassign because issue status is not 'pending'"}, :unprocessable_entity)
+      json_response({message: t(:error_not_pending)}, :unprocessable_entity)
     end
   end
 

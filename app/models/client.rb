@@ -3,6 +3,7 @@ class Client < ApplicationRecord
 
   has_many :issues, dependent: :destroy
 
-  validates_presence_of :email, :password_digest
-  validates :email, uniqueness: { case_sensitive: false }
+  # validations
+  validates :password_digest, presence: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
 end

@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+
+  api:
+    v1:
+      managers:
+        issues:
+          unassign:
+            error_not_pending: "Can't unassign because issue status is not 'pending'"
