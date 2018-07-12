@@ -1,3 +1,9 @@
-class Api::V1::Clients::BaseController < Api::V1::BaseController
-  before_action :authenticate_client
+module Api
+  module V1
+    module Clients
+      class BaseController < Api::V1::BaseController
+        before_action :authenticate_client
+      end
+    end
+  end
 end

@@ -2,11 +2,10 @@ module Registrations
   extend ActiveSupport::Concern
 
   def create
-
     if klass.new(permitted_params).save
-      json_response( { message: 'Account created successfully' }, :created)
+      json_response({ message: I18n.t('registrations.create.success') }, :created)
     else
-      json_response( { message: "Validation failed: Password can't be blank, Email can't be blank" }, :unprocessable_entity)
+      json_response({ message: I18n.t('registrations.create.error') }, :unprocessable_entity)
     end
   end
 

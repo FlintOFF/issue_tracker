@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   include ExceptionHandler
   include Knock::Authenticable
 
-  PER_PAGE = 25.freeze
+  PER_PAGE = 25
 
   private
 
@@ -18,6 +18,6 @@ class ApplicationController < ActionController::API
   protected
 
   def t(key)
-    I18n.t("#{self.class.name.gsub('Controller', '').downcase.gsub('::', '.')}.#{action_name}.#{key}")
+    I18n.t("#{self.class.name.remove('Controller').downcase.gsub('::', '.')}.#{action_name}.#{key}")
   end
 end

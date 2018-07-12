@@ -92,9 +92,7 @@ RSpec.describe 'Issues API', type: :request do
     end
   end
 
-
   describe 'PATCH /issues/:id/assign' do
-
     context 'when the record is not assigned before' do
       before { patch "#{base_path}/issues/#{issue_id}/assign", params: {}, headers: headers }
 
@@ -184,7 +182,7 @@ RSpec.describe 'Issues API', type: :request do
 
     context 'when the record is not assigned to any manager' do
       before do
-        patch "#{base_path}/issues/#{issue_id}", params: {status: 'in_progress'}, headers: headers
+        patch "#{base_path}/issues/#{issue_id}", params: { status: 'in_progress' }, headers: headers
       end
 
       it 'returns status code 401' do
@@ -229,7 +227,7 @@ RSpec.describe 'Issues API', type: :request do
     context 'when the record is assigned before' do
       before do
         issue.update(manager: manager_1)
-        patch "#{base_path}/issues/#{issue_id}", params: {status: 'in_progress'}, headers: headers
+        patch "#{base_path}/issues/#{issue_id}", params: { status: 'in_progress' }, headers: headers
       end
 
       it 'returns status code 200' do
@@ -244,7 +242,7 @@ RSpec.describe 'Issues API', type: :request do
     context 'when the record is assigned to another manager' do
       before do
         issue.update(manager: manager_2)
-        patch "#{base_path}/issues/#{issue_id}", params: {status: 'in_progress'}, headers: headers
+        patch "#{base_path}/issues/#{issue_id}", params: { status: 'in_progress' }, headers: headers
       end
 
       it 'returns status code 401' do
@@ -258,7 +256,7 @@ RSpec.describe 'Issues API', type: :request do
 
     context 'when the record is not assigned to any manager' do
       before do
-        patch "#{base_path}/issues/#{issue_id}", params: {status: 'in_progress'}, headers: headers
+        patch "#{base_path}/issues/#{issue_id}", params: { status: 'in_progress' }, headers: headers
       end
 
       it 'returns status code 401' do
@@ -271,7 +269,7 @@ RSpec.describe 'Issues API', type: :request do
     end
 
     context 'when the record not exists' do
-      before { patch "#{base_path}/issues/#{missing_issue_id}", params: {status: 'in_progress'}, headers: headers }
+      before { patch "#{base_path}/issues/#{missing_issue_id}", params: { status: 'in_progress' }, headers: headers }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)

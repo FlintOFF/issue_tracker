@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Registration API', type: :request do
-
-  let(:valid_attributes) { {
+  let(:valid_attributes) do
+    {
       email: Faker::Internet.email,
       password: 'password'
-  } }
+    }
+  end
   let(:base_path) { '/api/v1/clients' }
 
   describe 'POST /registrations' do

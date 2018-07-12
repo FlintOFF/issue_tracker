@@ -10,6 +10,6 @@ class Issue < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  #scopes
+  # scopes
   scope :by_status, ->(status) { where(status: status) }
 end

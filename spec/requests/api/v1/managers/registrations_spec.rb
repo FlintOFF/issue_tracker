@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'Registration API', type: :request do
-
   let!(:manager) { create(:manager) }
   let(:headers) { auth_headers(manager.id) }
-
-  let(:valid_attributes) { {
+  let(:base_path) { '/api/v1/managers' }
+  let(:valid_attributes) do
+    {
       email: Faker::Internet.email,
       password: 'password'
-  } }
-  let(:base_path) { '/api/v1/managers' }
+    }
+  end
 
   # User signup test suite
   describe 'POST /registrations' do

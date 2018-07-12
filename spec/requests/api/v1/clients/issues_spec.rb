@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Issues API', type: :request do
-
   let!(:client_1) { create(:client_with_issues, issues_count: 2) }
   let!(:client_2) { create(:client_with_issues, issues_count: 2) }
   let(:client_1_issue) { client_1.issues.first }
