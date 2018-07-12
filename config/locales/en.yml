@@ -30,11 +30,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-
   api:
     v1:
       managers:
         issues:
           unassign:
+            success: 'Unassigned'
             error_not_pending: "Can't unassign because issue status is not 'pending'"
+          update:
+            success: 'Updated'
+          assign:
+            success: 'Assigned'
+          check_assigning:
+            error: 'Issue is not assigned to any manager'
+          assigned_error:
+            error: 'Issue is assigned to another manager'

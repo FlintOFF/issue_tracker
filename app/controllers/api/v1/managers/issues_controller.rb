@@ -15,14 +15,14 @@ class Api::V1::Managers::IssuesController < Api::V1::Managers::BaseController
       assigned_error
     else
       issue.update(manager: current_manager)
-      json_response({message: 'Assigned'}, :ok)
+      json_response({message: t(:success)}, :ok)
     end
   end
 
   def unassign
     if issue.status == 'pending'
       issue.update(manager: nil)
-      json_response({message: 'Unassigned'}, :ok)
+      json_response({message: t(:success)}, :ok)
     else
       json_response({message: t(:error_not_pending)}, :unprocessable_entity)
     end
@@ -30,7 +30,7 @@ class Api::V1::Managers::IssuesController < Api::V1::Managers::BaseController
 
   def update
     issue.update(issue_params)
-    json_response({message: 'Updated'}, :ok)
+    json_response({message: t(:success)}, :ok)
   end
 
   private
@@ -50,13 +50,13 @@ class Api::V1::Managers::IssuesController < Api::V1::Managers::BaseController
   def check_assigning
     return if issue.manager == current_manager
     if issue.manager.nil?
-      json_response({message: 'Issue is not assigned to any manager'}, :unauthorized)
+      json_response({message: I18n.t('api.v1.managers.issues.check_assigning.error')}, :unauthorized)
     else
       assigned_error
     end
   end
 
   def assigned_error
-    json_response({message: 'Issue is assigned to another manager'}, :unauthorized)
+    json_response({message: I18n.t('api.v1.managers.issues.assigned_error.error')}, :unauthorized)
   end
 end
