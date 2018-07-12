@@ -19,12 +19,12 @@ cd issue_tracker
 
 ## Test
 * For run all tests `rspec`
-* For clients:
+* For clients (CURL):
     - registration new client `curl -H "Content-Type: application/json" -d '{"email":"client1@test.com", "password":"password"}' -X POST http://localhost:3000/api/v1/clients/registrations`
     - create token `curl -H "Content-Type: application/json" -d '{"auth": {"email": "client1@test.com", "password": "password"}}' -X POST http://localhost:3000/api/v1/clients/tokens`
     - create issue `curl -H "Authorization: JWT _TOKEN_" -H "Content-Type: application/json" -d '{"title":"title", "body": "body"}' -X POST http://localhost:3000/api/v1/clients/issues` 
     - issues list `curl -H "Authorization: JWT _TOKEN_" http://localhost:3000/api/v1/clients/issues` 
-* For managers:
+* For managers (CURL):
     - create token for existing manager `curl -d '{"auth": {"email": "manager1@test.com", "password": "password"}}' -H "Content-Type: application/json" -X POST http://localhost:3000/api/v1/managers/tokens`
     - registration new manager `curl -H "Authorization: JWT _TOKEN_" -H "Content-Type: application/json" -d '{"email":"manager2@test.com", "password":"password"}' -X POST http://localhost:3000/api/v1/managers/registrations` 
     - issues list `curl -H "Authorization: JWT _TOKEN_" http://localhost:3000/api/v1/managers/issues`
