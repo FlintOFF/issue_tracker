@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Client, type: :model do
   subject { create(:client) }
 
-  it { should have_many(:issues).dependent(:destroy) }
+  it { should have_many(:issues) }
 
   it 'has a valid factory' do
     expect(create(:client)).to be_valid
