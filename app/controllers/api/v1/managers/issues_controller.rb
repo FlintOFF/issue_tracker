@@ -19,8 +19,12 @@ class Api::V1::Managers::IssuesController < Api::V1::Managers::BaseController
   end
 
   def unassign
-    issue.update(manager: nil)
-    json_response({message: 'Unassigned'}, :ok)
+    if issue.status == 'pending'
+      issue.update(manager: nil)
+      json_response({message: 'Unassigned'}, :ok)
+    else
+      json_response({message: "Can't unassign because issue status is not 'pending'"}, :unprocessable_entity)
+    end
   end
 
   def update
@@ -44,7 +48,11 @@ class Api::V1::Managers::IssuesController < Api::V1::Managers::BaseController
 
   def check_assigning
     return if issue.manager == current_manager
-    assigned_error
+    if issue.manager.nil?
+      json_response({message: 'Issue is not assigned to any manager'}, :unauthorized)
+    else
+      assigned_error
+    end
   end
 
   def assigned_error

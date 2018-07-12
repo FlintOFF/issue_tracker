@@ -127,6 +127,50 @@ RSpec.describe 'Issues API', type: :request do
       end
     end
 
+    context 'when the issue have status in_progress' do
+      before do
+        issue.update(manager: manager_1, status: 'in_progress')
+        patch "#{base_path}/issues/#{issue_id}/unassign", params: {}, headers: headers
+      end
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns success message' do
+        expect(json['message']).to eq("Can't unassign because issue status is not 'pending'")
+      end
+    end
+
+    context 'when the issue have status resolved' do
+      before do
+        issue.update(manager: manager_1, status: 'resolved')
+        patch "#{base_path}/issues/#{issue_id}/unassign", params: {}, headers: headers
+      end
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns success message' do
+        expect(json['message']).to eq("Can't unassign because issue status is not 'pending'")
+      end
+    end
+
+    context 'when the record is not assigned to any manager' do
+      before do
+        patch "#{base_path}/issues/#{issue_id}", params: {status: 'in_progress'}, headers: headers
+      end
+
+      it 'returns status code 401' do
+        expect(response).to have_http_status(401)
+      end
+
+      it 'returns error message' do
+        expect(json['message']).to eq('Issue is not assigned to any manager')
+      end
+    end
+
     context 'when the record is assigned to another manager' do
       before do
         issue.update(manager: manager_2)
@@ -184,6 +228,20 @@ RSpec.describe 'Issues API', type: :request do
 
       it 'returns error message' do
         expect(json['message']).to eq('Issue is assigned to another manager')
+      end
+    end
+
+    context 'when the record is not assigned to any manager' do
+      before do
+        patch "#{base_path}/issues/#{issue_id}", params: {status: 'in_progress'}, headers: headers
+      end
+
+      it 'returns status code 401' do
+        expect(response).to have_http_status(401)
+      end
+
+      it 'returns error message' do
+        expect(json['message']).to eq('Issue is not assigned to any manager')
       end
     end
 
