@@ -1,4 +1,6 @@
-# README
+# Issue Tracker
+[![Maintainability](https://api.codeclimate.com/v1/badges/d3891e9a367d2e7f0741/maintainability)](https://codeclimate.com/github/FlintOFF/issue_tracker/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d3891e9a367d2e7f0741/test_coverage)](https://codeclimate.com/github/FlintOFF/issue_tracker/test_coverage)
 
 This is my version of test task "issue_tracker". 
 You can read full description for this task in the file [TASK.md](TASK.md).
@@ -32,6 +34,5 @@ cd issue_tracker
 ## TODO
 * Create model 'messages' for conversation between manager and client
 * Docker
-* CodeClimate
 
 
