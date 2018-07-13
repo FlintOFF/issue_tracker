@@ -32,5 +32,6 @@ cd issue_tracker
 ## TODO
 * Create model 'messages' for conversation between manager and client
 * Docker
+* CodeClimate
 
 
