@@ -4,7 +4,7 @@ This is my version of test task "issue_tracker".
 You can read full description for this task in the file [TASK.md](TASK.md).
 
 ## System dependencies
-You must already have installed version of ruby **2.5.1** and gem **bundle**
+You must already have installed version of ruby **2.5.1** and gem **bundler**
 
 ## Install
 ```
