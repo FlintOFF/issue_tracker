@@ -1,8 +1,7 @@
 module Api
   module V1
     module Managers
-      class ManagerTokenController < Knock::AuthTokenController
-        skip_before_action :verify_authenticity_token, raise: false
+      class ManagerTokenController < Api::V1::BaseTokenController
       end
     end
   end

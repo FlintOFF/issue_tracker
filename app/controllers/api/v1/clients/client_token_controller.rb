@@ -1,8 +1,7 @@
 module Api
   module V1
     module Clients
-      class ClientTokenController < Knock::AuthTokenController
-        skip_before_action :verify_authenticity_token, raise: false
+      class ClientTokenController < Api::V1::BaseTokenController
       end
     end
   end

@@ -10,11 +10,13 @@ RSpec.describe 'Tokens API', type: :request do
     it 'responds successfully' do
       post "#{base_path}/tokens", params: valid_params
       assert_response :success
+      expect(json.key?('jwt')).to be true
     end
 
     it 'responds unsuccessfully' do
       post "#{base_path}/tokens", params: invalid_params
-      assert_response :missing
+      assert_response :unauthorized
+      expect(json['message']).to eq('Invalid email address/password')
     end
   end
 end
